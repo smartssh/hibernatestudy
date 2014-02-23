@@ -5,13 +5,30 @@
 <hibernate-configuration>
 
 	<session-factory>
-		<!--
-		<property name="cache.use_second_level_cache">true</property>
-		<property name="hibernate.cache.use_query_cache">true</property>
-		<property name="cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</property>
-		-->
-		<!-- <class-cache class="com.kelvem.sample.system.model.SysAuthorityModel" region="Simple" usage="read-write"/> -->
-		<!-- <class-cache class="com.kelvem.sample.system.model.SysAuthorityModel" usage="read-only"/> -->
+		<!-- Database connection settings -->
+		<!--连接MySQL的驱动类名-->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<!--连接MySQL的IP地址及端口号，注意MySQL的默认远程连接是关闭的-->
+		<property name="connection.url">jdbc:mysql://kelvem-pc2:3306/hb</property>
+		<!--连接MySQL的用户名-->
+		<property name="connection.username">root</property>
+		<!--连接MySQL的密码-->
+		<property name="connection.password">321456</property>
+		<!-- JDBC connection pool (use the built-in) -->
+		<property name="connection.pool_size">1</property>
+		<!-- 方言类 -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<!-- Enable Hibernate's automatic session context management -->
+		<property name="current_session_context_class">thread</property>
+		<!--以格式良好的方式显示SQL语句-->
+		<property name="format_sql">true</property>
+		<!-- 显示SQL语句 -->
+		<property name="show_sql">true</property>
+		
+		<!-- mapping files -->
+		<mapping resource="hibernate/orm/school.hbm.xml"/>
+		<mapping resource="hibernate/orm/student.hbm.xml"/>
+		<mapping resource="hibernate/orm/teacher.hbm.xml"/>
 	</session-factory>
 	
 </hibernate-configuration>

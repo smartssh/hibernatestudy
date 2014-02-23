@@ -19,6 +19,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.ProjectionList;
@@ -46,7 +47,7 @@ public class Hibernate4DaoBase<T extends Serializable,PK extends Serializable> {
 	 */
 	private static final Log logger = LogFactory.getLog(Hibernate4DaoBase.class);
 	
-	@Autowired private SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	
 	/**
 	 * <p>根据序列名称获取序列值</p>
@@ -348,11 +349,11 @@ public class Hibernate4DaoBase<T extends Serializable,PK extends Serializable> {
 		return result;
 	}
 
-	public Session getSession(){
+	private Session getSession(){
 		return this.getSessionFactory().getCurrentSession();
 	}
 	
-	public SessionFactory getSessionFactory() {
+	private SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
 
