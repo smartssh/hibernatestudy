@@ -12,7 +12,7 @@ public class HibernateUtil {
 	private HibernateUtil() {
 	}
 
-	private static SessionFactory sessionFactory;
+	public static SessionFactory sessionFactory;
 	static {
 		Configuration cfg = new Configuration().configure("hibernate/hibernate.cfg.xml");
 
@@ -25,26 +25,54 @@ public class HibernateUtil {
 		return sessionFactory;
 	}
 
-	private static Session session;
-	public static Session getSession() {
-		if (session == null) {
-			session = sessionFactory.getCurrentSession();
-		}
-		return session;
-	}
 
-
-	private static Transaction transaction;
+	public static Transaction transaction;
 	
 	public static void beginTransaction(){
-		transaction = getSession().beginTransaction();
+		try {
+			transaction = sessionFactory.getCurrentSession().getTransaction();
+			if (transaction == null || transaction.isActive() == false) {
+				transaction = sessionFactory.getCurrentSession().beginTransaction();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void commit(){
-		transaction.commit();
+		try {
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void rollback(){
-		transaction.rollback();
+		try {
+			transaction.rollback();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void print(SessionFactory sessionFactory){
+		System.out.println("########### SessionFactory ############");
+		System.out.println("SessionFactory.isClosed() = " + sessionFactory.isClosed());
+		System.out.println("sessionFactory.getCurrentSession() = " + sessionFactory.getCurrentSession());
+		System.out.println("sessionFactory.getCurrentSession().hashCode() = " + sessionFactory.getCurrentSession().hashCode());
+		
+	}
+	
+	public static void print(Session session){
+		System.out.println("########### Session ############");
+		System.out.println("session = " + session);
+		System.out.println("session.isOpen() = " + session.isOpen());
+		System.out.println("session.hashCode() = " + session.hashCode());
+	}
+	
+	public static void print(Transaction transaction){
+		System.out.println("########### Transaction ############");
+		System.out.println("transaction.isActive() = " + transaction.isActive());
+		System.out.println("transaction.getLocalStatus().name() = " + transaction.getLocalStatus().name());
 	}
 }
