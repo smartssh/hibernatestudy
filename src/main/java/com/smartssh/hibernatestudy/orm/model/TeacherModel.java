@@ -29,7 +29,7 @@ public class TeacherModel implements java.io.Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	// Fields
-	private Integer id;
+	private Integer teacherId;
 
 	private String name;
 	private Integer sex;
@@ -38,17 +38,18 @@ public class TeacherModel implements java.io.Serializable {
 	private Date updateTime;
 	private Integer schoolId;
 
+	private SchoolModel school;
 
 	/** default constructor */
 	public TeacherModel() {
 	}
 
 	
-	public Integer getId() {
-		return this.id;
+	public Integer getTeacherId() {
+		return this.teacherId;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setTeacherId(Integer teacherId) {
+		this.teacherId = teacherId;
 	}
 	
 	
@@ -93,6 +94,17 @@ public class TeacherModel implements java.io.Serializable {
 	public void setSchoolId(Integer schoolId) {
 		this.schoolId = schoolId;
 	}
+
+
+	public SchoolModel getSchool() {
+		return school;
+	}
+
+
+	public void setSchool(SchoolModel school) {
+		this.school = school;
+	}
+
 	
 
 }

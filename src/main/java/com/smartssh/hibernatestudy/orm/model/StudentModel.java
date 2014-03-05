@@ -30,7 +30,7 @@ public class StudentModel implements java.io.Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	// Fields
-	private Integer id;
+	private Integer studentId;
 
 	private String name;
 	private Integer sex;
@@ -47,11 +47,11 @@ public class StudentModel implements java.io.Serializable {
 	}
 
 	
-	public Integer getId() {
-		return this.id;
+	public Integer getStudentId() {
+		return this.studentId;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setStudentId(Integer studentId) {
+		this.studentId = studentId;
 	}
 	
 	public String getName() {

@@ -7,6 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.smartssh.hibernatestudy.orm.model.SchoolModel;
 import com.smartssh.hibernatestudy.orm.model.StudentModel;
 import com.smartssh.hibernatestudy.orm.model.TeacherModel;
 import com.smartssh.hibernatestudy.util.HibernateUtil;
@@ -15,6 +16,7 @@ public class StudentDaoTest {
 	
 	private StudentDao studentDao;
 	private TeacherDao teacherDao;
+	private SchoolDao schoolDao;
 
 	@Before
 	public void setUp() throws Exception {
@@ -27,6 +29,9 @@ public class StudentDaoTest {
 
 			teacherDao = new TeacherDao();
 			teacherDao.setSessionFactory(sessionFactory);
+
+			schoolDao = new SchoolDao();
+			schoolDao.setSessionFactory(sessionFactory);
 
 			HibernateUtil.beginTransaction();
 		} catch (Exception e) {
@@ -52,21 +57,6 @@ public class StudentDaoTest {
     	
 		assertNotNull(student);
 		
-	}
-
-	@Test
-	public void testManyToOne() {
-    	
-		try {
-			TeacherModel teacher = teacherDao.getTeacherById(1);
-			
-			System.out.println(teacher.getName());
-			
-			assertNotNull(teacher);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 }

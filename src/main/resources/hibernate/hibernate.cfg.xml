@@ -27,6 +27,7 @@
 		
 		<!-- mapping files -->
 		<mapping resource="hibernate/orm/school.hbm.xml"/>
+		<mapping resource="hibernate/orm/school_info.hbm.xml"/>
 		<mapping resource="hibernate/orm/student.hbm.xml"/>
 		<mapping resource="hibernate/orm/teacher.hbm.xml"/>
 	</session-factory>

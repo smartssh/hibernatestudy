@@ -1,5 +1,6 @@
 package com.smartssh.hibernatestudy.util;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,11 +15,15 @@ public class HibernateUtil {
 
 	public static SessionFactory sessionFactory;
 	static {
-		Configuration cfg = new Configuration().configure("hibernate/hibernate.cfg.xml");
+		try {
+			Configuration cfg = new Configuration().configure("hibernate/hibernate.cfg.xml");
 
-		ServiceRegistry sr = new ServiceRegistryBuilder().applySettings(
-				cfg.getProperties()).buildServiceRegistry();
-		sessionFactory = cfg.buildSessionFactory(sr);
+			ServiceRegistry sr = new ServiceRegistryBuilder().applySettings(
+					cfg.getProperties()).buildServiceRegistry();
+			sessionFactory = cfg.buildSessionFactory(sr);
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static SessionFactory getSessionFactory() {

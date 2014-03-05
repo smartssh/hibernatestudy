@@ -10,6 +10,7 @@
 package com.smartssh.hibernatestudy.orm.model;
 
 import java.util.Date;
+import java.util.Set;
 
 
 /**
@@ -29,7 +30,7 @@ public class SchoolModel implements java.io.Serializable {
 	private static final long serialVersionUID = -1L;
 	
 	// Fields
-	private Integer id;
+	private Integer schoolId;
 
 	private String name;
 	private String address;
@@ -37,17 +38,19 @@ public class SchoolModel implements java.io.Serializable {
 	private String presidend;
 	private Date updateTime;
 
-
+	private Set<TeacherModel> teacherSet;
+	private SchoolInfoModel schoolInfo;
+	
 	/** default constructor */
 	public SchoolModel() {
 	}
 
 	
-	public Integer getId() {
-		return this.id;
+	public Integer getSchoolId() {
+		return this.schoolId;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setSchoolId(Integer schoolId) {
+		this.schoolId = schoolId;
 	}
 	
 	
@@ -84,6 +87,26 @@ public class SchoolModel implements java.io.Serializable {
 	}
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+
+
+	public Set<TeacherModel> getTeacherSet() {
+		return teacherSet;
+	}
+
+
+	public void setTeacherSet(Set<TeacherModel> teacherSet) {
+		this.teacherSet = teacherSet;
+	}
+
+
+	public SchoolInfoModel getSchoolInfo() {
+		return schoolInfo;
+	}
+
+
+	public void setSchoolInfo(SchoolInfoModel schoolInfo) {
+		this.schoolInfo = schoolInfo;
 	}
 	
 
